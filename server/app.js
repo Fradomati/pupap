@@ -60,7 +60,7 @@ app.use(
   })
 );
 
-require(".passport")(app);
+//require("./passport")(app);
 
 // Express View engine setup
 
