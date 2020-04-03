@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "mapbox-gl": "^1.9.1",
     "parcel": "^1.12.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-map-gl": "^5.2.3"
   },
   "devDependencies": {},
   "scripts": {
