@@ -1,5 +1,5 @@
 import React from "react";
-import { Map } from "./components/map";
+import { Map } from "./views/map.page";
 
 export const App = () => {
   return (
