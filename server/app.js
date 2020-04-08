@@ -10,6 +10,7 @@ const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const cors = require("cors");
+const LocalStrategy = require("passport-local").Strategy;
 
 mongoose
   .connect(process.env.DBURL, {
@@ -32,21 +33,21 @@ const debug = require("debug")(
 
 const app = express();
 
-// Cross Domain CORS whitlist
-const whitelist = ["http://localhost:3000", "http://localhost:1234"];
-const corsOptions = {
-  origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-};
+// // Cross Domain CORS whitlist
+// const whitelist = ["http://localhost:3000", "http://localhost:1234"];
+// const corsOptions = {
+//   origin: function(origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// };
 
-// Middleware Setup
-app.use(cors(corsOptions));
+// // Middleware Setup
+// app.use(cors(corsOptions));
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -60,7 +61,7 @@ app.use(
   })
 );
 
-//require("./passport")(app);
+require("./passport")(app);
 
 // Express View engine setup
 
@@ -82,5 +83,13 @@ app.locals.title = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
 app.use("/", index);
+
+// Login and Signup Route
+const auth = require("./routes/auth");
+app.use("/auth", auth);
+
+// Location Map Route
+const location = require("./routes/locations");
+app.use("/location", location);
 
 module.exports = app;
