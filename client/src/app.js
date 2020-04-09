@@ -1,14 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Home } from "./views/home.page";
+import { Login } from "./views/login.page";
+import { Signup } from "./views/signup.page";
 import { Map } from "./views/map.page";
 import { Geolocation } from "./components/geolocated";
 
 export const App = () => {
   return (
-    <>
-      <h1>Hola</h1>
-      <p>Esto es Pupap</p>
-      <Geolocation />
-      <Map />
-    </>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/auth/login" exact component={Login} />
+        <Route path="/auth/signup" exact component={Signup} />
+        <Route path="/map" exact component={Map} />
+      </Switch>
+    </Router>
   );
 };

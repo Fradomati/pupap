@@ -4,7 +4,7 @@ import { GoogleMap, MarkerClusterer, Marker } from "@react-google-maps/api";
 
 const position = { lat: 40.4233335, lng: -3.7593634 };
 
-export const HeatMap = () => {
+export const MapView = () => {
   const size = {
     height: "100vh",
     width: "100vw"
