@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const user = new mongoose.Schema(
   {
@@ -10,7 +11,8 @@ const user = new mongoose.Schema(
     halfHour: { type: Number, default: 0 },
     totalTime: { type: Number, default: 0 },
     totalWeight: { type: Number, default: 0 },
-    contentFav: { type: Array, default: [] }
+    contentFav: { type: Array, default: [] },
+    coordinates: { type: Array }
   },
   {
     timestamps: true

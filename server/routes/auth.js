@@ -45,7 +45,13 @@ router.post("/login", (req, res) => {
       }
 
       return res.json(
-        lodash.pick(req.user, ["username", "email", "createdAt", "updatedAt"])
+        lodash.pick(req.user, [
+          "_id",
+          "username",
+          "email",
+          "createdAt",
+          "updatedAt"
+        ])
       );
     });
   })(req, res);
@@ -58,6 +64,14 @@ router.post("/logout", isLoggedIn(), async (req, res) => {
     return res.json({ status: "Logout OK" });
   } else {
     res.status(401).json({ status: "Debes estar logeado para logout" });
+  }
+});
+
+router.post("/whoame", (req, res) => {
+  if (req.user) {
+    return res.json(lodash.pick(req.user, ["_id", "username", "email"]));
+  } else {
+    return res.status(401).json({ status: "No user session found" });
   }
 });
 

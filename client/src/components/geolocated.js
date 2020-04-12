@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { fnAddCoods } from "../connects/mapConnect";
+import { ContextApp } from "../context/Context";
 
 export const Geolocation = () => {
   const [geo, setPosition] = useState({ lat: 0, lng: 0 });
+
+  // Me traiego el usuario del contexto para sacar su ID y pasarselo al Back.
+  const { user } = useContext(ContextApp);
+  // Hago una copia porque no me dejaba sacar el _id.
+  const userCopy = { ...user };
+  const id = userCopy._id;
 
   let options = {
     enableHighAccuracy: true,
@@ -16,7 +24,10 @@ export const Geolocation = () => {
         console.log(pos);
         let latitude = pos.coords.latitude;
         let longitude = pos.coords.longitude;
-        setPosition({ lat: latitude, lng: longitude });
+        let coords = { id: id, lat: latitude, lng: longitude };
+        setPosition(coords);
+        fnAddCoods(coords);
+        console.log("Lo que paso al back", coords);
       },
       err => {
         console.warn(`ERROR ${err.code}: ${err.message}`);

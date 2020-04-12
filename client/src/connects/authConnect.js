@@ -12,7 +12,7 @@ export const fnSignup = async ({ username, password, email }) => {
     email
   });
 
-  console.log("Server dice:", response.data);
+  console.log("[SIGNUP] Server dice:", response.data);
   console.log("Usuario Creado");
 
   return response.data;
@@ -24,8 +24,22 @@ export const fnLogin = async ({ username, password }) => {
     username,
     password
   });
-  console.log("Server dice:", response.data);
+  console.log("[LOGIN] Server dice:", response.data);
   //   console.log("Usario Logeado");
+
+  return response.data;
+};
+
+export const fnLogout = async () => {
+  const response = await authConnect.post("/logout");
+  console.log("[LOGOUT] Server dice:", response.data);
+
+  return response.data;
+};
+
+export const fnWhoame = async () => {
+  const response = await authConnect.post("/whoame");
+  console.log("[WHOAME] Server dice:", response.data);
 
   return response.data;
 };
