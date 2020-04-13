@@ -1,29 +1,39 @@
-import React, { useState } from "react";
-import { TOKEN_API } from "/token_key";
+import React, { useState, useContext } from "react";
 import { GoogleMap, MarkerClusterer, Marker } from "@react-google-maps/api";
+import { ContextApp } from "../context/Context";
 
-const position = { lat: 40.4233335, lng: -3.7593634 };
-
-export const HeatMap = () => {
+export const MapView = () => {
+  const { mates } = useContext(ContextApp);
   const size = {
     height: "100vh",
-    width: "100vw"
+    width: "100vw",
   };
 
+  const copyMates = { ...mates };
+
+  console.log(
+    "[MAPAS] Esto es lo que trae el contexto",
+    copyMates.coordinates[0].lat
+  );
+
+  const position = {
+    lat: copyMates.coordinates[0].lat,
+    lng: copyMates.coordinates[0].lng,
+  };
   const zoom = 7;
 
   const center = position;
 
   const data = [
-    { lat: 38, lng: -4.1 },
+    position,
     { lat: 38, lng: -4.2 },
     { lat: 38, lng: -4.3 },
     { lat: 38, lng: -4.4 },
     { lat: 38, lng: -4.5 },
-    { lat: 38, lng: -4.6 }
+    { lat: 38, lng: -4.6 },
   ];
 
-  const onLoad = heatmapLayer => {
+  const onLoad = (heatmapLayer) => {
     console.log("HeatmapLayer onLoad heatampLayer:", heatmapLayer);
   };
 
@@ -36,7 +46,7 @@ export const HeatMap = () => {
     >
       <>
         <MarkerClusterer>
-          {clusterer => {
+          {(clusterer) => {
             console.log("clusterer:", clusterer);
             return data.map((poop, index) => {
               return (

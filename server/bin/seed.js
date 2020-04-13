@@ -4,7 +4,7 @@ const Location = require("../models/Location.Model");
 withDbConnection(
   async () =>
     await Location.create({
-      coordinates: ["ObjectId(adasd3442342asd)"]
+      coordinates: []
     }),
   console.log("Location Model Create on DB")
 );

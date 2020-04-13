@@ -1,5 +1,6 @@
 const express = require("express");
 const UserModel = require("../models/User.Model");
+const Location = require("../models/Location.Model");
 const passport = require("passport");
 const lodash = require("lodash");
 const router = express.Router();
@@ -18,6 +19,11 @@ router.post("/signup", async (req, res) => {
       username,
       password: hashPassword(password),
       email
+    });
+
+    // Agrego el id de usuario al modelo para recuperar las coordenadas.
+    await Location.findOneAndUpdate({
+      $addToSet: { coordinates: newUser._id }
     });
 
     req.logIn(newUser, err => {
@@ -45,18 +51,33 @@ router.post("/login", (req, res) => {
       }
 
       return res.json(
-        lodash.pick(req.user, ["username", "email", "createdAt", "updatedAt"])
+        lodash.pick(req.user, [
+          "_id",
+          "username",
+          "email",
+          "createdAt",
+          "updatedAt"
+        ])
       );
     });
   })(req, res);
 });
 
-router.post("logout", isLoggedIn(), async (req, res) => {
+router.post("/logout", isLoggedIn(), async (req, res) => {
   if (req.user) {
+    console.log(req.user);
     req.logout();
     return res.json({ status: "Logout OK" });
   } else {
     res.status(401).json({ status: "Debes estar logeado para logout" });
+  }
+});
+
+router.post("/whoame", (req, res) => {
+  if (req.user) {
+    return res.json(lodash.pick(req.user, ["_id", "username", "email"]));
+  } else {
+    return res.status(401).json({ status: "No user session found" });
   }
 });
 
