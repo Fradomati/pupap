@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { fnAddCoords, fnGetCoords } from "../../connects/mapConnect";
-import { ContextApp } from "../../context/Context";
+import { fnAddCoords, fnGetCoords } from "../connects/mapConnect";
+import { ContextApp } from "../context/Context";
 
 export const Geolocation = () => {
   const [geo, setPosition] = useState({ lat: 0, lng: 0 });
@@ -17,7 +17,7 @@ export const Geolocation = () => {
   let options = {
     enableHighAccuracy: true,
     timeout: 5000,
-    maximumAge: 0
+    maximumAge: 0,
   };
 
   // Tomo mi posición Actual y la mando a la BBDD.
@@ -33,7 +33,7 @@ export const Geolocation = () => {
         fnAddCoords(coords);
         console.log("Lo que paso al back", coords);
       },
-      err => {
+      (err) => {
         console.warn(`ERROR ${err.code}: ${err.message}`);
       },
       options
