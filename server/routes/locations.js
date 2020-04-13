@@ -13,17 +13,20 @@ router.post("/add", async (req, res) => {
     { _id: id },
     {
       $push: {
-        coordinates: coords
-      }
+        coordinates: coords,
+      },
     }
   );
   res.json({ status: `Added Lat ${lat} y Lng ${lng} to user id ${id}` });
 });
 
 router.get("/getLocations", async (req, res) => {
-  const locations = await LocationModel.find().populate("coordinates");
+  const locations = await LocationModel.find().populate(
+    "coordinates",
+    "coordinates"
+  );
 
-  console.log(locations);
+  console.log("[BACK] Aquí están las location", locations);
   res.json({ locations });
 });
 // Quedaría una ruta para eliminar el id. que contiene la localización

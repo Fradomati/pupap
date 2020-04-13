@@ -7,11 +7,10 @@ import { Geolocation } from "../components/geolocated";
 export const Map = () => {
   return (
     <>
-      <Geolocation>
-        <LoadScript id="map-google-load" googleMapsApiKey={TOKEN_API()}>
-          <MapView></MapView>
-        </LoadScript>
-      </Geolocation>
+      <Geolocation />
+      <LoadScript id="map-google-load" googleMapsApiKey={TOKEN_API()}>
+        <MapView></MapView>
+      </LoadScript>
     </>
   );
 };
