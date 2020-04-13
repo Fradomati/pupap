@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { TOKEN_API } from "/token_key";
 import { GoogleMap, MarkerClusterer, Marker } from "@react-google-maps/api";
 
 const position = { lat: 40.4233335, lng: -3.7593634 };

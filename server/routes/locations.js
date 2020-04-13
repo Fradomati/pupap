@@ -20,6 +20,12 @@ router.post("/add", async (req, res) => {
   res.json({ status: `Added Lat ${lat} y Lng ${lng} to user id ${id}` });
 });
 
+router.get("/getLocations", async (req, res) => {
+  const locations = await LocationModel.find().populate("coordinates");
+
+  console.log(locations);
+  res.json({ locations });
+});
 // Quedaría una ruta para eliminar el id. que contiene la localización
 
 module.exports = router;

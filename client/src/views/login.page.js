@@ -9,7 +9,7 @@ export const Login = ({ history }) => {
 
   // Me traigo el usuario del contexto, si lo hay.
   const { user, setUser } = useContext(ContextApp);
-  console.log("El usuario de ahora es:", user);
+  console.log("[LOGIN] El usuario de ahora es:", user);
 
   if (user) {
     return <div>Ya estás logeado, chaval</div>;
@@ -21,8 +21,8 @@ export const Login = ({ history }) => {
       if (!username) {
         console.log("Usuario NO logeado");
       } else {
-        console.log(`Usuario ${user}, logeado`);
-        setUser(data); // Pongo esto simplemente para que recoja los datos, porque luego con el Whoame lo hace pero necesito que el usuario recarge la página
+        console.log(`Usuario ${username}, logeado`);
+        setUser(responseServer); // Pongo esto simplemente para que recoja los datos, porque luego con el Whoame lo hace pero necesito que el usuario recarge la página
         history.push("/");
       }
     };

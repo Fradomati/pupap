@@ -1,5 +1,6 @@
 const express = require("express");
 const UserModel = require("../models/User.Model");
+const Location = require("../models/Location.Model");
 const passport = require("passport");
 const lodash = require("lodash");
 const router = express.Router();
@@ -18,6 +19,11 @@ router.post("/signup", async (req, res) => {
       username,
       password: hashPassword(password),
       email
+    });
+
+    // Agrego el id de usuario al modelo para recuperar las coordenadas.
+    await Location.findOneAndUpdate({
+      $addToSet: { coordinates: newUser._id }
     });
 
     req.logIn(newUser, err => {

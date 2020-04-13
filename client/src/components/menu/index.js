@@ -28,29 +28,37 @@ export const MainMenu = withRouter(({ history }) => {
           <div className="bar2"></div>
           <div className="bar3"></div>
         </li>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/auth/login">Iniciar Sesión</Link>
-        </li>
-        <li>
-          <Link to="/auth/signup">Registro</Link>
-        </li>
-        <li>
-          <Link to="/map">Ver Mapa</Link>
-        </li>
-        <li>
-          <Link
-            to="/"
-            onClick={() => {
-              doLogout();
-              console.log("Hacer Logout");
-            }}
-          >
-            Logout
-          </Link>
-        </li>
+        {user && (
+          <>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/map">Ver Mapa</Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                onClick={() => {
+                  doLogout();
+                  console.log("Hacer Logout");
+                }}
+              >
+                Logout
+              </Link>
+            </li>
+          </>
+        )}
+        {!user && (
+          <>
+            <li>
+              <Link to="/auth/login">Iniciar Sesión</Link>
+            </li>
+            <li>
+              <Link to="/auth/signup">Registro</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

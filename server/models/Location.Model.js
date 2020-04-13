@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const Schema = mongoose.Schema;
 
-const locations = new mongoose.Schema(
+const locationsSchema = new Schema(
   {
-    coordinates: [{ type: Schema.Types.ObjectId, ref: "User" }]
+    coordinates: [{ type: Schema.ObjectId, ref: "User" }]
   },
   {
     timestamps: true
   }
 );
 
-module.exports = mongoose.model("Location", locations);
+const Location = mongoose.model("Location", locationsSchema);
+module.exports = Location;

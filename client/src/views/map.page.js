@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { MapView } from "../components/map";
+import { MapView } from "../components/map/map";
 import { TOKEN_API } from "/token_key";
 import { LoadScript } from "@react-google-maps/api";
-import { Geolocation } from "../components/geolocated";
+import { Geolocation } from "../components/map/geolocated";
 
 export const Map = () => {
   return (
