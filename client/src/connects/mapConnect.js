@@ -17,7 +17,7 @@ export const fnAddCoords = async (coords) => {
 export const fnGetCoords = async () => {
   const response = await authConnect.get("/getLocations");
   //Paso el Array de Objetos con las coordenadas
-  const allCoords = response.data.locations[0].coordinates[0];
+  const allCoords = response.data.locations[0].coordinates;
   console.log("[MAP] La función de fnGetCoords devuevle", allCoords);
   return allCoords;
 };

@@ -4,10 +4,12 @@ import { fnGetCoords } from "../connects/mapConnect";
 export const ContextApp = createContext();
 
 export const ContextAppProvider = (props) => {
+  //          *** [USER CONTEXT TO LOGIN] ***
   const [user, setUser] = useState();
   console.log("El usuario actual:", user);
 
-  // [USER LOGGED?] ***Creo que no lo uso correnctamente***
+  //                *** [USER LOGGED?] ***
+  //  ***Creo que no lo uso correnctamente***
   // Uso el UseEffect para gestionar si el usuario está o no logeado.
   useEffect(() => {
     (async () => {
@@ -22,14 +24,15 @@ export const ContextAppProvider = (props) => {
     })();
   }, []);
 
-  // [DESIGN-MENU] Control de apertura de Menu
+  //                *** [DESIGN-MENU] ***
+  //  Control de apertura de Menu
   const [openMenu, setOpenMenu] = useState({
     className: "container",
     classNameNav: "",
   });
 
-  // [SHOW-USERS-MAP] Control de Usuarios Contectados
-
+  //                *** [SHOW-USERS-MAP] ***
+  //  Control de Usuarios Contectados
   const [mates, setMates] = useState(async () => {
     // Con esto te carga todos los usuarios en el contexto.
     try {

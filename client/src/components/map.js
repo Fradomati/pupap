@@ -3,39 +3,31 @@ import { GoogleMap, MarkerClusterer, Marker } from "@react-google-maps/api";
 import { ContextApp } from "../context/Context";
 
 export const MapView = () => {
-  const { mates } = useContext(ContextApp);
+  const { mates, user } = useContext(ContextApp);
   const size = {
     height: "100vh",
     width: "100vw",
   };
 
-  const copyMates = { ...mates };
+  /// *** POSICIÓN ACTUAL DEL USER ***
 
-  console.log(
-    "[MAPAS] Esto es lo que trae el contexto",
-    copyMates.coordinates[0].lat
-  );
+  const currentUser = { ...user };
+  const getArr = currentUser.coordinates;
+  const centerUser = { ...getArr };
 
-  const position = {
-    lat: copyMates.coordinates[0].lat,
-    lng: copyMates.coordinates[0].lng,
-  };
-  const zoom = 7;
+  //  *** FUNCIÓN PARA CONSTRUIR DATA - QUE MUESTRA LOS MATES ***
+  const copyMates = { ...mates }; // 1º Hago una copia
+  const preData = []; // Arrays con Objetos dentro, yo solo quiero un único Array de Objetos
+  const data = []; // Array de Objeto único.
+  Object.values(copyMates).map((e) => preData.push(e.coordinates)); // 2º Lo paso a Array
+  preData.map((e) => {
+    // 3º Vuelvo a pasar los Objetos a Array
+    if (e[0]) data.push(e[0]);
+  });
 
-  const center = position;
-
-  const data = [
-    position,
-    { lat: 38, lng: -4.2 },
-    { lat: 38, lng: -4.3 },
-    { lat: 38, lng: -4.4 },
-    { lat: 38, lng: -4.5 },
-    { lat: 38, lng: -4.6 },
-  ];
-
-  const onLoad = (heatmapLayer) => {
-    console.log("HeatmapLayer onLoad heatampLayer:", heatmapLayer);
-  };
+  //      *** REQUISITOS PARA CENTRAR EL MAPA ***
+  const zoom = 15;
+  const center = centerUser[0];
 
   return (
     <GoogleMap
@@ -47,7 +39,7 @@ export const MapView = () => {
       <>
         <MarkerClusterer>
           {(clusterer) => {
-            console.log("clusterer:", clusterer);
+            //console.log("clusterer:", clusterer);
             return data.map((poop, index) => {
               return (
                 <Marker
