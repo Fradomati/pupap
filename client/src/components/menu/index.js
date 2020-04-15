@@ -37,6 +37,9 @@ export const MainMenu = withRouter(({ history }) => {
               <Link to="/map">Ver Mapa</Link>
             </li>
             <li>
+              <Link to="/content">Enjoy!</Link>
+            </li>
+            <li>
               <Link
                 to="/"
                 onClick={() => {
