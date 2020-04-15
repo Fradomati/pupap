@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { fnWhoame } from "../connects/authConnect";
 import { fnGetCoords } from "../connects/mapConnect";
+import { popularCnt } from "../connects/cntConnect";
 export const ContextApp = createContext();
 
 export const ContextAppProvider = (props) => {
@@ -45,9 +46,28 @@ export const ContextAppProvider = (props) => {
     }
   });
 
+  //                *** [SHOW-CONTENT-DEFAULT ***
+  const [content, setContent] = useState(async () => {
+    try {
+      const defaultContent = await popularCnt();
+      setContent(defaultContent);
+    } catch (err) {
+      console.log("[CONTEXTO] El estado ha dado este error", err);
+    }
+  });
+
   return (
     <ContextApp.Provider
-      value={{ user, setUser, openMenu, setOpenMenu, mates, setMates }}
+      value={{
+        user,
+        setUser,
+        openMenu,
+        setOpenMenu,
+        mates,
+        setMates,
+        content,
+        setContent,
+      }}
     >
       {props.children}
     </ContextApp.Provider>

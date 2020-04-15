@@ -1,4 +1,4 @@
-import { TOKEN_API_REDDIT, TOKEN_API_REDDIT_REFRESH } from "../token_key";
+import { TOKEN_API_REDDIT, TOKEN_API_REDDIT_REFRESH } from "../../token_key";
 const snoowrap = require("snoowrap");
 
 const r = new snoowrap({
