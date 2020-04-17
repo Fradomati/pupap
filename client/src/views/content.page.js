@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { popularCnt } from "../../lib/ApiContent";
+import { popularCnt, intCnt } from "../connects/cntConnect";
 import { ContextApp } from "../context/Context";
 
 export const Content = () => {
@@ -23,6 +23,17 @@ export const Content = () => {
     //console.log("sss", contenido);
   };
 
+  const intBtn = () => {
+    intCnt().then((cont) => {
+      const arr = cont.map((e) => {
+        console.log(e);
+        return e[0];
+      });
+      console.log("interesting", arr);
+      setNewCnt(arr);
+    });
+  };
+
   //   async () => await setNewCnt();
 
   //   console.log("New cont", newCnt, content);
@@ -37,20 +48,47 @@ export const Content = () => {
     return <div>Cargando...</div>;
   } else {
     return (
-      <div>
-        <button type="button" onClick={() => console.log("hola")}>
-          Pulse me
+      <div className="container-enjoy">
+        <button type="button" onClick={() => intBtn()}>
+          +Interesante
         </button>
-        <ul>
-          {newCnt.map((post, i) => (
-            <li key={i}>
-              <h2>
-                <a href={post.url}>{post.title}</a>
-              </h2>
-              <img src={post.image} />
-            </li>
-          ))}
-        </ul>
+        <div className="cards-container">
+          <ul>
+            {newCnt.map((post, i) => (
+              <li key={i}>
+                <div className="card">
+                  <div className="section-1">
+                    <div className="card-img">
+                      <img src={post.image} />
+                    </div>
+                    <div className="card-text">
+                      <div className="text">
+                        <p>
+                          <a href={post.url}>{post.title}</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="section-2">
+                    <div className="card-btn">
+                      <div className="more-info">
+                        <a href="#">+info</a>
+                      </div>
+                      <div className="likes-box">
+                        <div className="likes">
+                          <button>+</button>
+                        </div>
+                        <div className="likes">
+                          <button>-</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
