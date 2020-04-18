@@ -147,6 +147,19 @@ h1 {
 
 /*** Content Page ***/
 
+/* Header Enjoy */
+
+.head-enjoy {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15vh;
+}
+
+.icon-img {
+  width: 2.2em;
+}
+
 /* Cards Content */
 
 .card {
@@ -161,13 +174,14 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 15vh;
 }
 
 .card-img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 35%;
 }
 
 .card-text {
@@ -214,8 +228,13 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   width: 40%;
   height: 100%;
   border-radius: 2em;
+}
+
+.icon-vot {
+  height: auto !important;
+  width: 1.7em !important;
 }
