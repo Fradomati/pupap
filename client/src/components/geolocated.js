@@ -5,8 +5,11 @@ import { ContextApp } from "../context/Context";
 export const Geolocation = () => {
   const [geo, setPosition] = useState({ lat: 0, lng: 0 });
   let id;
+
+  //            *** DATOS PARA SABER LA _ID DEL USER ACTUAL ***
   // Me traiego el usuario del contexto para sacar su ID y pasarselo al Back.
   const { user } = useContext(ContextApp);
+
   // Hago una copia porque no me dejaba sacar el _id.
 
   const userCopy = { ...user };
@@ -14,6 +17,8 @@ export const Geolocation = () => {
 
   console.log("[MAPA] User Context:", user);
 
+  //           *** CONFIGURACIONES DEL NAVIGATOR.GEOLOCATION
+  //                    + FUNCIÓN QUE EXTRAE LA LOC DEL USER. ***
   let options = {
     enableHighAccuracy: true,
     timeout: 5000,

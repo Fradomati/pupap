@@ -8,15 +8,17 @@ html {
   width: 100%;
 }
 body {
-  background: linear-gradient(#5f2c82, #24222d);
+  /* background: linear-gradient(#5f2c82, #24222d); */
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif;
   color: #fff;
-  overflow: hidden;
+  overflow: scroll;
 }
+
+/**** Menu ****/
 a {
-  color: #5dc;
+  color: #fff;
   text-decoration: none;
 }
 a:hover {
@@ -27,7 +29,7 @@ a:hover {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: relative;
   transition: all 0.3s;
 }
@@ -141,4 +143,98 @@ h1 {
     background: rgba(0, 0, 0, 0.5);
     color: #5cd;
   }
+}
+
+/*** Content Page ***/
+
+/* Header Enjoy */
+
+.head-enjoy {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15vh;
+}
+
+.icon-img {
+  width: 2.2em;
+}
+
+/* Cards Content */
+
+.card {
+  /* box-shadow: 1px 1px black; */
+
+  /* border-bottom: 1px solid #fff; */
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.section-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 15vh;
+}
+
+.card-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+}
+
+.card-text {
+  width: 60%;
+  padding: 0.1em;
+  font-size: 0.8em;
+}
+
+.card img {
+  border-radius: 100px;
+  height: 100%;
+  width: auto;
+  max-height: 100px;
+  max-width: 100px;
+  object-fit: cover;
+}
+
+.card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 0.5em;
+}
+
+.more-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 35%;
+  border: 0.5px solid #fff;
+  border-radius: 2em;
+}
+
+.likes-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  width: 50%;
+}
+
+.likes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid white; */
+  width: 40%;
+  height: 100%;
+  border-radius: 2em;
+}
+
+.icon-vot {
+  height: auto !important;
+  width: 1.7em !important;
 }

@@ -18,15 +18,15 @@ router.post("/signup", async (req, res) => {
     const newUser = await UserModel.create({
       username,
       password: hashPassword(password),
-      email
+      email,
     });
 
     // Agrego el id de usuario al modelo para recuperar las coordenadas.
     await Location.findOneAndUpdate({
-      $addToSet: { coordinates: newUser._id }
+      $addToSet: { coordinates: newUser._id },
     });
 
-    req.logIn(newUser, err => {
+    req.logIn(newUser, (err) => {
       res.json(
         lodash.pick(req.user, ["username", "_id", "createdAt", "updatedAt"])
       );
@@ -45,7 +45,7 @@ router.post("/login", (req, res) => {
     if (!user) {
       return res.json({ status: "No existe el usuario" });
     }
-    req.login(user, err => {
+    req.login(user, (err) => {
       if (err) {
         return res.status(500).json({ status: "Sesión mal guardada" });
       }
@@ -56,7 +56,7 @@ router.post("/login", (req, res) => {
           "username",
           "email",
           "createdAt",
-          "updatedAt"
+          "updatedAt",
         ])
       );
     });
@@ -75,7 +75,9 @@ router.post("/logout", isLoggedIn(), async (req, res) => {
 
 router.post("/whoame", (req, res) => {
   if (req.user) {
-    return res.json(lodash.pick(req.user, ["_id", "username", "email"]));
+    return res.json(
+      lodash.pick(req.user, ["_id", "username", "email", "coordinates"])
+    );
   } else {
     return res.status(401).json({ status: "No user session found" });
   }
