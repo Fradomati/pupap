@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Header } from "./Header";
+import { StartBtn } from "../components/startBtn";
 import { ContextApp } from "../context/Context";
 
 export const Layout = ({ children }) => {
@@ -8,6 +9,7 @@ export const Layout = ({ children }) => {
   return (
     <>
       <div className={openMenu.className}>
+        <StartBtn />
         <Header />
         <div className="body-container">{children}</div>
       </div>

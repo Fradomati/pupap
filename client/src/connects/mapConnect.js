@@ -12,7 +12,14 @@ export const fnAddCoords = async (coords) => {
   return response.data;
 };
 
-//[MAP] Get all coordinates
+// [MAP] Remove Coordinates
+export const fnRmvCoords = async (id) => {
+  const response = await authConnect.post("/remove", id);
+  console.log("[MAP] La función de fnRmvCoods devuelve:", id);
+  return response.data;
+};
+
+// [MAP] Get all coordinates
 
 export const fnGetCoords = async () => {
   const response = await authConnect.get("/getLocations");

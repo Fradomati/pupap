@@ -17,6 +17,7 @@ export const popularCnt = async () => {
       { title: post.title, image: post.thumbnail, url: post.url },
     ]);
   response.shift(); // Elimino el primer elemento que no me sirve
+  console.log(response);
   return response;
 };
 

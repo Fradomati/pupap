@@ -20,6 +20,16 @@ router.post("/add", async (req, res) => {
   res.json({ status: `Added Lat ${lat} y Lng ${lng} to user id ${id}` });
 });
 
+router.post("/remove", async (req, res) => {
+  const { id } = req.body;
+  await UserModel.findOneAndUpdate(
+    { _id: id },
+    {
+      $set: { coordinates: [] },
+    }
+  );
+});
+
 router.get("/getLocations", async (req, res) => {
   const locations = await LocationModel.find().populate(
     "coordinates",

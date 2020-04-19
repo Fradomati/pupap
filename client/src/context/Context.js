@@ -25,11 +25,24 @@ export const ContextAppProvider = (props) => {
     })();
   }, []);
 
+  // Context update
+
+  const upContext = async () => {
+    const currentUser = await fnWhoame();
+    setUser(currentUser);
+  };
+
   //                *** [DESIGN-MENU] ***
   //  Control de apertura de Menu
   const [openMenu, setOpenMenu] = useState({
     className: "container",
     classNameNav: "",
+  });
+
+  //                *** [DESIGN-MENU] ***
+  //  Control de apertura de Menu
+  const [activeBtn, setActiveBtn] = useState({
+    className: "startBtn",
   });
 
   //                *** [SHOW-USERS-MAP] ***
@@ -63,10 +76,13 @@ export const ContextAppProvider = (props) => {
         setUser,
         openMenu,
         setOpenMenu,
+        activeBtn,
+        setActiveBtn,
         mates,
         setMates,
         content,
         setContent,
+        upContext,
       }}
     >
       {props.children}
