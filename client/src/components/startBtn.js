@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { fnAddCoords, fnRmvCoords, fnGetCoords } from "../connects/mapConnect";
-import { fnWhoame } from "../connects/authConnect";
 import { ContextApp } from "../context/Context";
 import { fnCalTime, fnGetTime } from "../../lib/ApiTimer";
 
@@ -41,17 +40,24 @@ export const StartBtn = () => {
   const [time, setTime] = useState(); // Controlador de on/off
   const [startP, setStartP] = useState(); // Tiempo de inicio
   const [endP, setEndP] = useState(); // Tiempo de fin
+  const [hour, setHour] = useState();
   useEffect(() => {
     const t = fnGetTime();
     if (time == "start") {
       setStartP(t);
-      setEndP(); // Reseteo la hora de fin para mandarla al back.
+      const hour = t.hour;
+      setHour(hour);
     } else if (time == "stop") {
       setEndP(t);
     }
   }, [time]);
 
-  if (endP) fnCalTime([startP, endP]);
+  if (endP) {
+    fnCalTime({ start: startP, end: endP, id: id, hour: hour }),
+      setStartP(),
+      setEndP(),
+      setHour();
+  }
 
   console.log("Start:", startP);
   console.log("End:", endP);

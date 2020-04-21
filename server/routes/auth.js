@@ -76,7 +76,16 @@ router.post("/logout", isLoggedIn(), async (req, res) => {
 router.post("/whoame", (req, res) => {
   if (req.user) {
     return res.json(
-      lodash.pick(req.user, ["_id", "username", "email", "coordinates"])
+      lodash.pick(req.user, [
+        "_id",
+        "username",
+        "email",
+        "coordinates",
+        "allTimes",
+        "lasTime",
+        "dayWeek",
+        "hours",
+      ])
     );
   } else {
     return res.status(401).json({ status: "No user session found" });
