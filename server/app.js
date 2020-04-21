@@ -15,14 +15,14 @@ const LocalStrategy = require("passport-local").Strategy;
 mongoose
   .connect(process.env.DBURL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
-  .then(x => {
+  .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
 
@@ -36,14 +36,14 @@ const app = express();
 // Cross Domain CORS whitlist
 const whitelist = ["http://localhost:3000", "http://localhost:1234"];
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true
+  credentials: true,
 };
 
 // Middleware Setup
@@ -57,7 +57,7 @@ app.use(
     secret: "Marques-top",
     resave: true,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 
@@ -69,7 +69,7 @@ app.use(
   require("node-sass-middleware")({
     src: path.join(__dirname, "public"),
     dest: path.join(__dirname, "public"),
-    sourceMap: true
+    sourceMap: true,
   })
 );
 
@@ -91,5 +91,9 @@ app.use("/auth", auth);
 // Location Map Route
 const location = require("./routes/locations");
 app.use("/location", location);
+
+// Data Route
+const data = require("./routes/data");
+app.use("/data", data);
 
 module.exports = app;

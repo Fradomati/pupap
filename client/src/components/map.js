@@ -6,11 +6,8 @@ import { ContextApp } from "../context/Context";
 import { darkMap, darkMap2 } from "../../public/darkmap";
 
 // Imágenes
-import on from "../../public/images/on.svg";
+import on from "../../public/images/on.png";
 
-const icon = {
-  size: [35],
-};
 export const MapView = () => {
   const { mates, user, upContext } = useContext(ContextApp);
   const size = {
@@ -43,7 +40,7 @@ export const MapView = () => {
   });
 
   //      *** REQUISITOS PARA CENTRAR EL MAPA ***
-  const zoom = 7;
+  const zoom = 15;
   const center = centerUser[0];
 
   if (!user) {
@@ -72,11 +69,7 @@ export const MapView = () => {
                     key={index}
                     position={{ lat: poop.lat, lng: poop.lng }}
                     clusterer={clusterer}
-                  >
-                    {(bla) => {
-                      console.log("asdadasd", bla);
-                    }}
-                  </Marker>
+                  ></Marker>
                 );
               });
             }}
