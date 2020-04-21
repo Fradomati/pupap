@@ -2,14 +2,14 @@ import axios from "axios";
 
 const authConnect = axios.create({
   baseURL: "http://localhost:3000/auth",
-  withCredentials: true
+  withCredentials: true,
 });
 
 export const fnSignup = async ({ username, password, email }) => {
   const response = await authConnect.post("/signup", {
     username,
     password,
-    email
+    email,
   });
 
   console.log("[SIGNUP] Server dice:", response.data);
@@ -22,7 +22,7 @@ export const fnLogin = async ({ username, password }) => {
   console.log("Estás haciendo un login de", username, "contraseña", password);
   const response = await authConnect.post("/login", {
     username,
-    password
+    password,
   });
   console.log("[LOGIN] Server dice:", response.data);
   //   console.log("Usario Logeado");

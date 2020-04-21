@@ -6,16 +6,17 @@ const userSchema = new mongoose.Schema(
     username: String,
     password: String,
     email: String,
-    timesWeek: { type: Number, default: 0 },
-    halfTime: { type: Number, default: 0 },
-    halfHour: { type: Number, default: 0 },
-    totalTime: { type: Number, default: 0 },
+    allTimes: [{ type: Number }],
+    lastTime: { type: Number, default: 0 },
+    countTimes: { type: Number, default: 0 },
+    dayWeek: [{ type: Number }],
+    hours: [{ type: Number }],
     totalWeight: { type: Number, default: 0 },
     contentFav: { type: Array, default: [] },
-    coordinates: { type: Array }
+    coordinates: { type: Array },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
