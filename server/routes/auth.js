@@ -82,7 +82,7 @@ router.post("/whoame", (req, res) => {
         "email",
         "coordinates",
         "allTimes",
-        "lasTime",
+        "lastTime",
         "dayWeek",
         "hours",
       ])

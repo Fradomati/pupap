@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { fnHalfTime } from "../../lib/ApiTimer";
+import { fnHalfTime, fnMountTime, fnSumTime } from "../../lib/ApiTimer";
 import { ContextApp } from "../context/Context";
 
 // Icónos
@@ -8,23 +8,64 @@ import bra from "../../public/images/brain.svg";
 import chr from "../../public/images/chrono.svg";
 import cal from "../../public/images/cal.svg";
 
-export const Home = () => {
+export const Home = (props) => {
   const { user, upContext } = useContext(ContextApp);
-  const [data, setData] = useState();
+  const [show, setShow] = useState();
+  console.log("[LAS PROOPS", props);
+  console.log("**************** ARRANQUE **********************");
+  console.log("USERRRR:", user);
+  const [data, setData] = useState({
+    half: {
+      hour: 0,
+      min: 0,
+      sec: 0,
+    },
+    last: {
+      hour: 0,
+      min: 0,
+      sec: 0,
+    },
+    total: {
+      hour: 0,
+      min: 0,
+      sec: 0,
+    },
+  });
+
+  const fnData = () => {
+    !show ? setShow("show") : setShow;
+  };
 
   const uData = { ...user };
-  console.log(user, "asàfmamfa fa");
+
   useEffect(() => {
-    const half = uData.allTimes;
-    console.log("HALF", half);
-    const m = fnHalfTime(half);
-    console.log("sffklfckcfkcfkmklgfmfmcemc€¶", m);
-    setData(m);
+    if (user) {
+      const half = uData.allTimes;
+      const lastTime = uData.lastTime;
+      console.log("HALF", half);
+      const m = fnHalfTime(half); // Tiempo Medio
+      const l = fnMountTime(lastTime); // Monto el último momento.
+      const t = fnSumTime(half); // Total de tiempo
+      console.log("LAST", l);
+      const dataUser = { half: m, last: l, total: t };
+      setData(dataUser);
+    }
+    // setData(dataUser);
   }, []);
 
   console.log("[HOME] El user", user);
-  if (!data) {
-    return <div>One minute!</div>;
+  if (!user) {
+    return (
+      <div>
+        <button
+          onClick={() => {
+            fnData();
+          }}
+        >
+          Show Data
+        </button>
+      </div>
+    );
   } else {
     return (
       <div>
@@ -39,9 +80,9 @@ export const Home = () => {
                 <p>Último</p>
                 <div className="reloj">
                   <div className="nums">
-                    <div>{data.hour}</div>
-                    <div>{data.min}</div>
-                    <div>{data.sec}</div>
+                    <div>{data.last.hour ? data.last.hour : 0}</div>
+                    <div>{data.last.min ? data.last.min : 0}</div>
+                    <div>{data.last.sec ? data.last.sec : 0}</div>
                   </div>
                   <div className="abr">
                     <div>hr</div>
@@ -54,9 +95,9 @@ export const Home = () => {
                 <p>Total</p>
                 <div className="reloj">
                   <div className="nums">
-                    <div>00</div>
-                    <div>00</div>
-                    <div>00</div>
+                    <div>{data.total.hour ? data.total.hour : 0}</div>
+                    <div>{data.total.min ? data.total.min : 0}</div>
+                    <div>{data.total.sec ? data.total.sec : 0}</div>
                   </div>
                   <div className="abr">
                     <div>hr</div>
@@ -69,9 +110,9 @@ export const Home = () => {
                 <p>Media</p>
                 <div className="reloj">
                   <div className="nums">
-                    <div>00</div>
-                    <div>00</div>
-                    <div>00</div>
+                    <div>{data.half.hour ? data.half.hour : 0}</div>
+                    <div>{data.half.min ? data.half.min : 0}</div>
+                    <div>{data.half.sec ? data.half.sec : 0}</div>
                   </div>
                   <div className="abr">
                     <div>hr</div>

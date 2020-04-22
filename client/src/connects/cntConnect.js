@@ -9,7 +9,6 @@ const r = new snoowrap({
 });
 
 export const popularCnt = async () => {
-  console.log("hola");
   const topic = await r.getSubreddit("es");
   const response = await topic
     .getHot({ limit: 21 })
@@ -17,12 +16,10 @@ export const popularCnt = async () => {
       { title: post.title, image: post.thumbnail, url: post.url },
     ]);
   response.shift(); // Elimino el primer elemento que no me sirve
-  console.log(response);
   return response;
 };
 
 export const intCnt = async () => {
-  console.log("hola");
   const topic = await r.getSubreddit("todayilearned");
   const response = await topic.getHot({ limit: 20 }).map((post) => [
     {
@@ -35,7 +32,6 @@ export const intCnt = async () => {
       url: post.url,
     },
   ]);
-  console.log(response);
   pruebas();
   return response;
 };
@@ -50,6 +46,5 @@ export const pruebas = async () => {
           (post.preview?.images[0].resolutions).length - 2
         ]
     );
-  console.log(response);
   return response;
 };

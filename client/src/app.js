@@ -6,6 +6,7 @@ import { Signup } from "./views/signup.page";
 import { Map } from "./views/map.page";
 import { Content } from "./views/content.page";
 import { Geolocation } from "./components/geolocated";
+import { StartBtn } from "./components/startBtn";
 import { Layout } from "./layout/Layout";
 import { ContextAppProvider } from "./context/Context";
 

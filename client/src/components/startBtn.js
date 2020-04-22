@@ -6,7 +6,7 @@ import { fnCalTime, fnGetTime } from "../../lib/ApiTimer";
 // Imágenes
 import poopi from "../../public/images/poopi.png";
 
-export const StartBtn = () => {
+export const StartBtn = ({ children }) => {
   //            *** DATOS PARA SABER LA _ID DEL USER ACTUAL ***
   // Me traiego el usuario del contexto para sacar su ID y pasarselo al Back.
   const { user, setUser, activeBtn, setActiveBtn, upContext } = useContext(
@@ -100,11 +100,14 @@ export const StartBtn = () => {
     }
   }
   return (
-    <div className="connect-box">
-      <div className={activeBtn.className} onClick={() => track()}>
-        <img src={poopi}></img>
+    <>
+      <div className="connect-box">
+        <div className={activeBtn.className} onClick={() => track()}>
+          <img src={poopi}></img>
+        </div>
+        <div>Push me!</div>
       </div>
-      <div>Push me!</div>
-    </div>
+      <div>{children}</div>
+    </>
   );
 };
