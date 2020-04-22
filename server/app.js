@@ -34,7 +34,7 @@ const debug = require("debug")(
 const app = express();
 
 // Cross Domain CORS whitlist
-const whitelist = ["http://localhost:3000", "http://localhost:1234"];
+const whitelist = [`${process.env.BACK_URL}`, `${process.env.FRONT_URL}`];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {

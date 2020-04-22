@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authConnect = axios.create({
-  baseURL: "http://localhost:3000/auth",
+  baseURL: `${process.env.BACK_URL}/auth`,
   withCredentials: true,
 });
 
