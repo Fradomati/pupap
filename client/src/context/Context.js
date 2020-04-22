@@ -30,6 +30,7 @@ export const ContextAppProvider = (props) => {
   const upContext = async () => {
     const currentUser = await fnWhoame();
     setUser(currentUser);
+    return currentUser;
   };
 
   //                *** [DESIGN-MENU] ***

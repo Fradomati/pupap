@@ -280,6 +280,28 @@ h1 {
 .title.bra {
   background-color: #047ce2;
 }
+
+.reloj {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1em;
+}
+
+.nums {
+  display: flex;
+  justify-content: space-evenly;
+}
+.abr {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.nums div {
+  width: 09vw;
+}
+
+.abr div {
+  width: 09vw;
+}
 /*** Content Page ***/
 
 /* Header Enjoy */

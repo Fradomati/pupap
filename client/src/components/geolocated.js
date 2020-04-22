@@ -15,8 +15,6 @@ export const Geolocation = () => {
   const userCopy = { ...user };
   id = userCopy._id;
 
-  console.log("[MAPA] User Context:", user);
-
   //           *** CONFIGURACIONES DEL NAVIGATOR.GEOLOCATION
   //                    + FUNCIÓN QUE EXTRAE LA LOC DEL USER. ***
   let options = {
@@ -27,7 +25,6 @@ export const Geolocation = () => {
 
   // Tomo mi posición Actual y la mando a la BBDD.
   function track() {
-    console.log("Posición actual:");
     navigator.geolocation.getCurrentPosition(
       function success(pos) {
         console.log(pos);

@@ -9,9 +9,10 @@ export const Layout = ({ children }) => {
   return (
     <>
       <div className={openMenu.className}>
-        <StartBtn />
         <Header />
-        <div className="body-container">{children}</div>
+        <div className="body-container">
+          <StartBtn>{children}</StartBtn>
+        </div>
       </div>
     </>
   );

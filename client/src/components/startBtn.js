@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { fnAddCoords, fnRmvCoords, fnGetCoords } from "../connects/mapConnect";
-import { fnWhoame } from "../connects/authConnect";
 import { ContextApp } from "../context/Context";
 import { fnCalTime, fnGetTime } from "../../lib/ApiTimer";
 
 // Imágenes
 import poopi from "../../public/images/poopi.png";
 
-export const StartBtn = () => {
+export const StartBtn = ({ children }) => {
   //            *** DATOS PARA SABER LA _ID DEL USER ACTUAL ***
   // Me traiego el usuario del contexto para sacar su ID y pasarselo al Back.
   const { user, setUser, activeBtn, setActiveBtn, upContext } = useContext(
@@ -41,17 +40,24 @@ export const StartBtn = () => {
   const [time, setTime] = useState(); // Controlador de on/off
   const [startP, setStartP] = useState(); // Tiempo de inicio
   const [endP, setEndP] = useState(); // Tiempo de fin
+  const [hour, setHour] = useState();
   useEffect(() => {
     const t = fnGetTime();
     if (time == "start") {
       setStartP(t);
-      setEndP(); // Reseteo la hora de fin para mandarla al back.
+      const hour = t.hour;
+      setHour(hour);
     } else if (time == "stop") {
       setEndP(t);
     }
   }, [time]);
 
-  if (endP) fnCalTime([startP, endP]);
+  if (endP) {
+    fnCalTime({ start: startP, end: endP, id: id, hour: hour }),
+      setStartP(),
+      setEndP(),
+      setHour();
+  }
 
   console.log("Start:", startP);
   console.log("End:", endP);
@@ -94,11 +100,14 @@ export const StartBtn = () => {
     }
   }
   return (
-    <div className="connect-box">
-      <div className={activeBtn.className} onClick={() => track()}>
-        <img src={poopi}></img>
+    <>
+      <div className="connect-box">
+        <div className={activeBtn.className} onClick={() => track()}>
+          <img src={poopi}></img>
+        </div>
+        <div>Push me!</div>
       </div>
-      <div>Push me!</div>
-    </div>
+      <div>{children}</div>
+    </>
   );
 };
