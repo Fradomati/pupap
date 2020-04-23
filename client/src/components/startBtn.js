@@ -2,11 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { fnAddCoords, fnRmvCoords, fnGetCoords } from "../connects/mapConnect";
 import { ContextApp } from "../context/Context";
 import { fnCalTime, fnGetTime } from "../../lib/ApiTimer";
+import { withRouter } from "react-router-dom";
 
 // Imágenes
 import poopi from "../../public/images/poopi.png";
 
-export const StartBtn = ({ children }) => {
+export const StartBtn = withRouter(({ history, children }) => {
   //            *** DATOS PARA SABER LA _ID DEL USER ACTUAL ***
   // Me traiego el usuario del contexto para sacar su ID y pasarselo al Back.
   const { user, setUser, activeBtn, setActiveBtn, upContext } = useContext(
@@ -49,6 +50,8 @@ export const StartBtn = ({ children }) => {
       setHour(hour);
     } else if (time == "stop") {
       setEndP(t);
+      history.push("/");
+      window.location.reload();
     }
   }, [time]);
 
@@ -70,7 +73,6 @@ export const StartBtn = ({ children }) => {
   function track() {
     if (activeBtn.className == "startBtn") {
       setActiveBtn({ className: "startBtn active" });
-      console.log("Posición actual:");
       navigator.geolocation.getCurrentPosition(
         function success(pos) {
           console.log(pos);
@@ -110,4 +112,4 @@ export const StartBtn = ({ children }) => {
       <div>{children}</div>
     </>
   );
-};
+});

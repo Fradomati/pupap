@@ -17,6 +17,16 @@ body {
   background-color: black;
 }
 
+/*** Loading ***/
+
+.loading-box {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /**** Menu ****/
 a {
   color: #fff;
@@ -308,26 +318,66 @@ h1 {
 
 .head-enjoy {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   height: 10vh;
   border-bottom: 2px solid white;
   border-top: 2px solid wheat;
   margin-bottom: 1em;
+  background-color: #f93c2f;
+
+  /* Scroll lateral*/
+
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .icon-img {
-  width: 2.2em;
+  width: 2.5em;
+  margin: 0em 1em;
+}
+
+.directions {
+  position: absolute;
+  z-index: 9999;
+  top: 7vh;
+}
+.directions-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.directions img {
+  width: 0.7em;
+  margin: 0em 0.3em 0em 0.3em;
+}
+
+.box-directions {
+  position: absolute;
+  margin-top: -2em;
+  width: 100vw;
+  top: 15vh;
 }
 
 /* Cards Content */
 
+.cards-container {
+  margin-top: 14vh;
+}
+
+.cards-container ul li {
+  display: flex;
+  justify-content: center;
+}
 .card {
   /* box-shadow: 1px 1px black; */
 
   /* border-bottom: 1px solid #fff; */
   margin-bottom: 1em;
-  width: 100%;
+  width: 96%;
+  background: #535655;
+  padding: 1.5em 0em 0.7em 0;
+  border-radius: 10px;
 }
 
 .section-1 {
@@ -335,6 +385,11 @@ h1 {
   justify-content: space-between;
   align-items: center;
   min-height: 15vh;
+}
+
+.section-2 {
+  border-top: solid 4px black;
+  margin-top: 1em;
 }
 
 .card-img {
@@ -372,8 +427,9 @@ h1 {
   align-items: center;
   height: 40px;
   width: 35%;
-  border: 0.5px solid #fff;
+  /* border: 0.5px solid #fff; */
   border-radius: 2em;
+  background-color: #f93c2f;
 }
 
 .likes-box {
