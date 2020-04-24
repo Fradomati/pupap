@@ -16,6 +16,8 @@ import { withProtected } from "../../lib/protectRoute";
 import bra from "../../public/images/brain.svg";
 import chr from "../../public/images/chrono.svg";
 import cal from "../../public/images/cal.svg";
+import copy from "../../public/images/copy.svg";
+import copied from "../../public/images/copy.svg";
 
 const Page = () => {
   const [show, setShow] = useState();
@@ -38,6 +40,20 @@ const Page = () => {
       sec: 0,
     },
   });
+  //* Copia de data */
+
+  const [imgCopy, setImgCopy] = useState(copy);
+  const copyCnt = (cnt) => {
+    const textCopy = document.createElement("textarea");
+    textCopy.value = cnt;
+    textCopy.setAttribute("readonly", "");
+    textCopy.style.position = "absolute";
+    textCopy.style.left = "-9999px";
+    document.body.appendChild(textCopy);
+    textCopy.select();
+    document.execCommand("copy");
+    document.body.removeChild(textCopy);
+  };
 
   useEffect(() => {
     if (usuario) {
@@ -70,6 +86,22 @@ const Page = () => {
             <img src={chr} className="data-icon chr" />
 
             <p>Tus tiempos</p>
+          </div>
+          <div className="share-data">
+            <img
+              src={imgCopy}
+              className="copy-img"
+              onClick={() => {
+                copyCnt(
+                  `Los tiempos de ${usuario.username}: 
+                  Hoy: ${data.last.hour}h:${data.last.min}m:${data.last.sec}s 
+                  Media: ${data.half.hour}h:${data.half.min}m:${data.half.sec}s
+                  Total: ${data.total.hour}h:${data.total.min}m:${data.total.sec}s. 
+                  ¿Y tú?`
+                );
+                setImgCopy(copied);
+              }}
+            ></img>
           </div>
           <div className="data-text">
             <div>
@@ -132,7 +164,7 @@ const Page = () => {
               </p>
             </div>
             <div>
-              <p>Hora Media</p>
+              <p>Hora Habitual</p>
               <p className="data-result">
                 {data.hour ? data.hour : "Sin estrenar"} h
               </p>

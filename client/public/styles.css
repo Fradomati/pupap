@@ -371,6 +371,18 @@ h1 {
 .data-result {
   font-family: "Orbitron", sans-serif !important;
 }
+
+/** Share Buttom **/
+
+.share-data {
+  margin-top: -2.4em;
+  margin-right: 1em;
+  text-align: right;
+}
+
+.copy-img {
+  width: 1.4em;
+}
 /*** Content Page ***/
 
 /* Header Enjoy */

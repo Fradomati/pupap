@@ -150,6 +150,15 @@ export const fnIntData = (time) => {
       return timesLess1hour.less2[random(timesLess1hour.less2.length)];
     }
   } else if (sec > 0) {
+    if (sec < 10) {
+      return timesLess1mint.less10[random(timesLess1mint.less10.length)];
+    } else if (sec < 30) {
+      return timesLess1mint.less30[random(timesLess1mint.less30.length)];
+    } else if (sec < 50) {
+      return timesLess1mint.less40[random(timesLess1mint.less40.length)];
+    } else {
+      return timesLess1mint.less60[random(timesLess1mint.less60.length)];
+    }
   }
 };
 
