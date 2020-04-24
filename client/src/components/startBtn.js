@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { fnAddCoords, fnRmvCoords, fnGetCoords } from "../connects/mapConnect";
 import { ContextApp } from "../context/Context";
-import { fnCalTime, fnGetTime } from "../../lib/ApiTimer";
+import { fnCalTime, fnGetTime, random } from "../../lib/ApiTimer";
 import { withRouter } from "react-router-dom";
 
 // Imágenes
@@ -21,6 +21,24 @@ export const StartBtn = withRouter(({ history, children }) => {
 
   const userCopy = { ...user };
   id = userCopy._id;
+
+  // Frases de ánimo
+  const [phrase, setPhrase] = useState(`¡Púlsame! Comparte tu "momento"`);
+  const arrPhrases = [
+    "¡Ánimo crack!",
+    "El amor es más difícil que cagar en un frasquito",
+    "Tenías la tortuga mordiendo tela, ¡ehm!",
+    "Jordan colgando del aro ¿no?",
+    "¿Acaso no caga el Papa?",
+    "Al comer y al evacuar, prisa no te has de dar",
+    "¡Hombre al agua!",
+    "Deja de arrugar la cara, tómatelo con calma",
+    "Desaloja al inquilino tranquilo",
+    "Te vas a quitar un peso de encima",
+    "Estás como las abejas, con el aguijón fuera...",
+  ];
+
+  const randomNum = random(arrPhrases.length);
 
   // *** Esta función previene que se guarde una ubicación si el usuario se sale *** //
   window.onbeforeunload = function () {
@@ -48,6 +66,7 @@ export const StartBtn = withRouter(({ history, children }) => {
       setStartP(t);
       const hour = t.hour;
       setHour(hour);
+      setPhrase(arrPhrases[randomNum]);
     } else if (time == "stop") {
       setEndP(t);
       history.push("/");
@@ -108,7 +127,7 @@ export const StartBtn = withRouter(({ history, children }) => {
           <div className={activeBtn.className} onClick={() => track()}>
             <img src={poopi}></img>
           </div>
-          <div>Push me!</div>
+          <div className="txt-animo">{phrase}</div>
         </div>
         <div>{children}</div>
       </>

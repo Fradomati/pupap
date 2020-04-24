@@ -122,7 +122,7 @@ export const fnHalfTime = (time) => {
 
 // Timers of the World!
 
-const random = (num) => {
+export const random = (num) => {
   return Math.floor(Math.random() * (num - 0)) + 0;
 };
 
@@ -133,20 +133,27 @@ export const fnIntData = (time) => {
     return "más de una hora!";
   } else if (min > 0) {
     if (min < 2) {
-      return timesLess5mint.less2[random(timesLess5mint.less2.length)];
+      return timesLess1hour.less2[random(timesLess1hour.less2.length)];
     } else if (min < 5) {
-      return timesLess5mint.less5[random(timesLess5mint.less5.length)];
+      return timesLess1hour.less5[random(timesLess1hour.less5.length)];
+    } else if (min < 15) {
+      return timesLess1hour.less15[random(timesLess1hour.less15.length)];
+    } else if (min < 30) {
+      return timesLess1hour.less30[random(timesLess1hour.less30.length)];
+    } else if (min < 60) {
+      return timesLess1hour.less60[random(timesLess1hour.less60.length)];
     } else {
       console.log(
         "ASUASDASMLFASFM",
-        timesLess5mint.less2[random(timesLess5mint.less2.length)]
+        timesLess1hour.less2[random(timesLess1hour.less2.length)]
       );
-      return timesLess5mint.less2[random(timesLess5mint.less2.length)];
+      return timesLess1hour.less2[random(timesLess1hour.less2.length)];
     }
   } else if (sec > 0) {
   }
 };
 
+// Menos de 1 mint
 const timesLess1mint = {
   less10: [
     `El récord de hacer girar la pelota sobre la nariz pertenece a "Scooter", Christense, de los Harlem Globetrotters. 7,7 segundos`,
@@ -160,22 +167,34 @@ const timesLess1mint = {
   ],
   less50: [
     `Lean Shutkever, de Reino Unidos, tiene el récord de comerse un burrito de 44,20s`,
-    `
-    Scott Murphy obstenta el récord de doblar una sartén de aluminio de 30cm a 17,46cm en 30s`,
+    `Scott Murphy obstenta el récord de doblar una sartén de aluminio de 30cm a 17,46cm en 30s`,
   ],
   less60: [
     `David Rush tiene el prestigioso récord de quitar 70 calcetines en menos de un minuto`,
   ],
 };
 
-const timesLess5mint = {
+// Menos de 1 hora
+const timesLess1hour = {
   less2: [
     `El Príncipe Harry y su mujer Meghan, tienen el récord del pérfil de instagram en alcanzar antes el millón de segudores. 5h:45m, 2899/mint.`,
     `Liza Thomas, un "barman" de Queensland (Australia), tiene el récord de preparar 420 capuchinos en una hora, 7 cada minuto`,
+    `La tirolina más larga del mundo se encuentra en la montaña de Jebel Jaisen, al norte de los Emiratos. 2m y 2s de duración (150km/h)`,
   ],
-  less5: [`Michael Phelps hizo los 400m estilos de natación en 4m y 3s`],
+  less5: [
+    `Michael Phelps hizo los 400m estilos de natación en 4m y 3s (Récord Mundial)`,
+    `El famoso salto de Felix Baumgartner desde el espacio con Red Bull Stratos, tuvo una caída libre de más de 4 minutos de duración.`,
+  ],
+  less15: [
+    `Amancio Ortega gana 646,95€ cada minuto. Casi 10.000€ cada 15 minutos`,
+  ],
+  less30: [`El español Aleix segura, tiene el récord de apnea de ¡24m y 3s!`],
+  less60: [
+    `Wim Hoff tiene récord de tiempo enterrado en la nieve, desnudo. 42 min y 22s`,
+  ],
 };
 
+// Más de 1 hora
 const timeLess1hour = {
   less1: [
     `Wim Hoff tiene récord de tiempo enterrado en la nieve, desnudo. 42 min y 22s`,

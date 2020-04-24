@@ -51,7 +51,7 @@ const Page = () => {
       const t = fnSumTime(half); // Total de tiempo
       const d = fnDayWeek(daysWeek); // Día de la semana
       const h = fnHourDay(hours);
-      const i = fnIntData(t);
+      const i = fnIntData(t) || [];
       console.log("DÏA:", d);
       console.log("LAST", l);
       console.log("INFO", i);

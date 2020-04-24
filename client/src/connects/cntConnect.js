@@ -31,12 +31,13 @@ export const intCnt = async () => {
       image: post.thumbnail,
       img_hq:
         post.preview?.images[0].resolutions[
-          (post.preview?.images[0].resolutions).length - 2
+          (post.preview?.images[0].resolutions).length
         ], //la penúltima imagen con máxima calidad
       url: post.url,
     },
+    [post],
   ]);
-
+  pruebas();
   return response;
 };
 
@@ -77,6 +78,7 @@ export const soccerCnt = async () => {
     },
   ]);
   response.shift();
+  response.shift();
   return response;
 };
 
@@ -94,6 +96,7 @@ export const dogsCnt = async () => {
         ], //la penúltima imagen con máxima calidad
       url: post.url,
     },
+    [post],
   ]);
   response.shift();
   return response;
@@ -158,17 +161,7 @@ export const badDesignCnt = async () => {
 
 export const pruebas = async () => {
   const topic = await r.getSubreddit("MapPorn");
-  const response = await topic.getHot({ limit: 20 }).map((post) => [
-    {
-      title: post.title,
-      image: post.thumbnail,
-      img_hq:
-        post.preview?.images[0].resolutions[
-          (post.preview?.images[0].resolutions).length - 2
-        ], //la penúltima imagen con máxima calidad
-      url: post.url,
-    },
-  ]);
+  const response = await topic.getHot({ limit: 20 }).map((post) => [post]);
 
   console.log[("[MAP PORN ::::>]", response)];
   return response;

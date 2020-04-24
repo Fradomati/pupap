@@ -51,6 +51,13 @@ body {
   text-align: center;
 }
 
+.txt-animo {
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+  margin-left: 3em;
+  line-height: 90%;
+}
+
 /*** Forms ***/
 
 .error-message {
@@ -79,7 +86,7 @@ a:hover {
 }
 
 p {
-  font-family: "lato";
+  font-family: "Lato";
   margin-bottom: 0rem !important;
 }
 .container-menu {
@@ -209,6 +216,7 @@ h1 {
   display: flex;
   align-items: center;
   padding: 0em 1em;
+  width: 93vw;
 }
 .startBtn {
   position: absolute;

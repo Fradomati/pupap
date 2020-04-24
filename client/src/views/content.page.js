@@ -262,6 +262,7 @@ export const Content = () => {
                                 ? poopi
                                 : post.image
                             }
+                            onClick={() => console.log(post.img_hq.url)}
                           />
                         </div>
                         <div className="card-contnt-txt">
