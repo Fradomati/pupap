@@ -250,10 +250,10 @@ export const Content = () => {
             <ul>
               {newCnt.map((post, i) => (
                 <li key={i}>
-                  <div className="card">
+                  <div className="card-contnt">
                     <div>
                       <div className="section-1">
-                        <div className="card-img">
+                        <div className="card-contnt-img">
                           <img
                             src={
                               post.image == "self" ||
@@ -264,16 +264,14 @@ export const Content = () => {
                             }
                           />
                         </div>
-                        <div className="card-text">
-                          <div className="text">
-                            <p>
-                              <a href={post.url}>{post.title}</a>
-                            </p>
+                        <div className="card-contnt-txt">
+                          <div className="txt">
+                            <p>{post.title}</p>
                           </div>
                         </div>
                       </div>
                       <div className="section-2">
-                        <div className="card-btn">
+                        <div className="card-contnt-btn">
                           <div className="more-info">
                             <div onClick={() => gFrame(post.url)}>+info</div>
                           </div>

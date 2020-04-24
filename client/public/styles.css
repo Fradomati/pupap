@@ -6,6 +6,7 @@
 html {
   height: 100%;
   width: 100%;
+  background-color: black;
 }
 body {
   /* background: linear-gradient(#5f2c82, #24222d); */
@@ -15,6 +16,47 @@ body {
   color: #fff;
   overflow: scroll;
   background-color: black;
+}
+
+.body-container {
+  color: #fff;
+}
+
+/** Initial box **/
+
+.initial-box {
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  background-color: #00af80;
+  border-radius: 99px;
+  width: 5em;
+  margin: 1em 0em -2em 0em;
+}
+
+.logo img {
+  width: 5em;
+}
+
+.title-initial {
+  width: 100vw;
+  font-family: "Lobster", cursive;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/*** Forms ***/
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 0.2em;
 }
 
 /*** Loading ***/
@@ -35,7 +77,12 @@ a {
 a:hover {
   color: #6ae1d2;
 }
-.container {
+
+p {
+  font-family: "lato";
+  margin-bottom: 0rem !important;
+}
+.container-menu {
   background-color: black;
   margin: 0;
   padding: 0;
@@ -262,7 +309,7 @@ h1 {
   margin-right: 0.5em;
 }
 
-.title {
+.title-data {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -279,15 +326,15 @@ h1 {
   text-align: center;
 }
 
-.title.chr {
+.title-data.chr {
   background-color: #f93c2f;
 }
 
-.title.cal {
+.title-data.cal {
   background-color: #00af80;
 }
 
-.title.bra {
+.title-data.bra {
   background-color: #047ce2;
 }
 
@@ -311,6 +358,10 @@ h1 {
 
 .abr div {
   width: 09vw;
+}
+
+.data-result {
+  font-family: "Orbitron", sans-serif !important;
 }
 /*** Content Page ***/
 
@@ -369,7 +420,7 @@ h1 {
   display: flex;
   justify-content: center;
 }
-.card {
+.card-contnt {
   /* box-shadow: 1px 1px black; */
 
   /* border-bottom: 1px solid #fff; */
@@ -378,6 +429,8 @@ h1 {
   background: #535655;
   padding: 1.5em 0em 0.7em 0;
   border-radius: 10px;
+  color: white;
+  text-decoration: none;
 }
 
 .section-1 {
@@ -392,20 +445,20 @@ h1 {
   margin-top: 1em;
 }
 
-.card-img {
+.card-contnt-img {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 35%;
 }
 
-.card-text {
+.card-contnt-txt {
   width: 60%;
   padding: 0.1em;
   font-size: 0.9em;
 }
 
-.card img {
+.card-contnt img {
   border-radius: 100px;
   height: 100%;
   width: auto;
@@ -414,7 +467,7 @@ h1 {
   object-fit: cover;
 }
 
-.card-btn {
+.card-contnt-btn {
   display: flex;
   align-items: center;
   justify-content: space-around;

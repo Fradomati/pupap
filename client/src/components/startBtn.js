@@ -101,15 +101,32 @@ export const StartBtn = withRouter(({ history, children }) => {
       };
     }
   }
-  return (
-    <>
-      <div className="connect-box">
-        <div className={activeBtn.className} onClick={() => track()}>
-          <img src={poopi}></img>
+  if (user) {
+    return (
+      <>
+        <div className="connect-box">
+          <div className={activeBtn.className} onClick={() => track()}>
+            <img src={poopi}></img>
+          </div>
+          <div>Push me!</div>
         </div>
-        <div>Push me!</div>
-      </div>
-      <div>{children}</div>
-    </>
-  );
+        <div>{children}</div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="initial-box">
+          <div className="logo">
+            <img src={poopi}></img>
+          </div>
+          <div className="title-initial">
+            <h1>Poopapp</h1>
+            <p>Disfruta tu momento</p>
+          </div>
+        </div>
+        <div>{children}</div>
+      </>
+    );
+  }
 });

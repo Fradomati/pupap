@@ -35,7 +35,7 @@ export const ContextAppProvider = (props) => {
   //                *** [DESIGN-MENU] ***
   //  Control de apertura de Menu
   const [openMenu, setOpenMenu] = useState({
-    className: "container",
+    className: "container-menu",
     classNameNav: "",
   });
 
