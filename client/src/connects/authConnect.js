@@ -1,4 +1,18 @@
 import axios from "axios";
+import React, { useContext, useState, useEffect } from "react";
+
+export const UserContext = React.createContext();
+
+export const useUser = () => {
+  const userState = useContext(UserContext);
+  console.log("[MARC METHOD] User:", userState);
+  return userState.user;
+};
+
+export const useUserIsLoading = () => {
+  const userState = useContext(UserContext);
+  return userState.loading;
+};
 
 const authConnect = axios.create({
   baseURL: `${process.env.BACK_URL}/auth`,

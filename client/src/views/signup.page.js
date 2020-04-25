@@ -4,6 +4,13 @@ import { useForm } from "react-hook-form";
 import { fnSignup } from "../connects/authConnect";
 import { ContextApp } from "../context/Context";
 
+// Style with bootstrap
+
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+
 export const Signup = ({ history }) => {
   const { register, handleSubmit, errors } = useForm({
     mode: "onSubmit",
@@ -30,40 +37,60 @@ export const Signup = ({ history }) => {
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        placeholder="Username"
-        name="username"
-        ref={register({ required: true, maxLength: 80 })}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        ref={register({
-          required: true,
-          min: 8,
-          maxLength: 12,
-          pattern: /^(?=.*\d).{8,12}$/i,
-        })}
-      />
-      {errors.password && (
-        <p>
-          Password must be between 8 and 12 digits long and include at least one
-          numeric digit.
-        </p>
-      )}
-      <input
-        type="text"
-        placeholder="Email"
-        name="email"
-        ref={register({ required: true, pattern: /^\S+@\S+$/i })}
-      />
-      {errors.email && <p>Ups... Ese email no es correcto :(</p>}
+    <Container>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Username"
+            name="username"
+            ref={register({
+              required: true,
+              maxLength: 80,
+              message: "Este campo es obligatorio",
+            })}
+          />
+          <Form.Group controlId="Password"></Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            ref={register({
+              required: true,
+              min: 8,
+              maxLength: 12,
+              pattern: /^(?=.*\d).{8,12}$/i,
+            })}
+          />
+          {errors.password && (
+            <p className="error-message">
+              Password must be between 8 and 12 digits long and include at least
+              one numeric digit.
+            </p>
+          )}
+        </Form.Group>
+        <Form.Group controlId="Email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Email"
+            name="email"
+            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+          />
+          {errors.email && (
+            <p className="error-message">
+              Ups! There are problem with email. Try again =)
+            </p>
+          )}
+        </Form.Group>
 
-      <input type="submit" />
-    </form>
+        <Button variant="primary" type="submit">
+          Registrar
+        </Button>
+      </Form>
+    </Container>
   );
 };
 /*};*/

@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { fnAddCoords, fnRmvCoords, fnGetCoords } from "../connects/mapConnect";
 import { ContextApp } from "../context/Context";
-import { fnCalTime, fnGetTime } from "../../lib/ApiTimer";
+import { fnCalTime, fnGetTime, random } from "../../lib/ApiTimer";
+import { withRouter } from "react-router-dom";
 
 // Imágenes
 import poopi from "../../public/images/poopi.png";
 
-export const StartBtn = ({ children }) => {
+export const StartBtn = withRouter(({ history, children }) => {
   //            *** DATOS PARA SABER LA _ID DEL USER ACTUAL ***
   // Me traiego el usuario del contexto para sacar su ID y pasarselo al Back.
   const { user, setUser, activeBtn, setActiveBtn, upContext } = useContext(
@@ -20,6 +21,24 @@ export const StartBtn = ({ children }) => {
 
   const userCopy = { ...user };
   id = userCopy._id;
+
+  // Frases de ánimo
+  const [phrase, setPhrase] = useState(`¡Púlsame! Comparte tu "momento"`);
+  const arrPhrases = [
+    "¡Ánimo crack!",
+    "El amor es más difícil que cagar en un frasquito",
+    "Tenías la tortuga mordiendo tela, ¡ehm!",
+    "Jordan colgando del aro ¿no?",
+    "¿Acaso no caga el Papa?",
+    "Al comer y al evacuar, prisa no te has de dar",
+    "¡Hombre al agua!",
+    "Deja de arrugar la cara, tómatelo con calma",
+    "Desaloja al inquilino tranquilo",
+    "Te vas a quitar un peso de encima",
+    "Estás como las abejas, con el aguijón fuera...",
+  ];
+
+  const randomNum = random(arrPhrases.length);
 
   // *** Esta función previene que se guarde una ubicación si el usuario se sale *** //
   window.onbeforeunload = function () {
@@ -47,8 +66,11 @@ export const StartBtn = ({ children }) => {
       setStartP(t);
       const hour = t.hour;
       setHour(hour);
+      setPhrase(arrPhrases[randomNum]);
     } else if (time == "stop") {
       setEndP(t);
+      history.push("/");
+      window.location.reload();
     }
   }, [time]);
 
@@ -70,7 +92,6 @@ export const StartBtn = ({ children }) => {
   function track() {
     if (activeBtn.className == "startBtn") {
       setActiveBtn({ className: "startBtn active" });
-      console.log("Posición actual:");
       navigator.geolocation.getCurrentPosition(
         function success(pos) {
           console.log(pos);
@@ -99,15 +120,32 @@ export const StartBtn = ({ children }) => {
       };
     }
   }
-  return (
-    <>
-      <div className="connect-box">
-        <div className={activeBtn.className} onClick={() => track()}>
-          <img src={poopi}></img>
+  if (user) {
+    return (
+      <>
+        <div className="connect-box">
+          <div className={activeBtn.className} onClick={() => track()}>
+            <img src={poopi}></img>
+          </div>
+          <div className="txt-animo">{phrase}</div>
         </div>
-        <div>Push me!</div>
-      </div>
-      <div>{children}</div>
-    </>
-  );
-};
+        <div>{children}</div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="initial-box">
+          <div className="logo">
+            <img src={poopi}></img>
+          </div>
+          <div className="title-initial">
+            <h1>Poopapp</h1>
+            <p>Disfruta tu momento</p>
+          </div>
+        </div>
+        <div>{children}</div>
+      </>
+    );
+  }
+});

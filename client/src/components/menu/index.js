@@ -7,10 +7,15 @@ import { fnLogout, fnWhoame } from "../../connects/authConnect";
 export const MainMenu = withRouter(({ history }) => {
   const { user, setUser, openMenu, setOpenMenu } = useContext(ContextApp);
   const pushMenu = () => {
-    if ((openMenu.className = "container" && openMenu.classNameNav == "")) {
-      setOpenMenu({ className: "container menu-open", classNameNav: "open" });
+    if (
+      (openMenu.className = "container-menu" && openMenu.classNameNav == "")
+    ) {
+      setOpenMenu({
+        className: "container-menu menu-open",
+        classNameNav: "open",
+      });
     } else {
-      setOpenMenu({ className: "container", classNameNav: "" });
+      setOpenMenu({ className: "container-menu", classNameNav: "" });
     }
   };
 

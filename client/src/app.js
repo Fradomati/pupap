@@ -9,8 +9,9 @@ import { Geolocation } from "./components/geolocated";
 import { StartBtn } from "./components/startBtn";
 import { Layout } from "./layout/Layout";
 import { ContextAppProvider } from "./context/Context";
+import { withAuthentication } from "../lib/withAuthentication";
 
-export const App = () => {
+export const App = withAuthentication(() => {
   return (
     <Router>
       <ContextAppProvider>
@@ -26,4 +27,4 @@ export const App = () => {
       </ContextAppProvider>
     </Router>
   );
-};
+});
