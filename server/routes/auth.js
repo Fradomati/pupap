@@ -42,6 +42,7 @@ router.post("/login", (req, res) => {
       console.log("err:", err);
       return res.json({ status: "Error en la Autentificación" });
     }
+    console.log(user);
     if (!user) {
       return res.json({ status: "No existe el usuario" });
     }
@@ -49,16 +50,7 @@ router.post("/login", (req, res) => {
       if (err) {
         return res.status(500).json({ status: "Sesión mal guardada" });
       }
-
-      return res.json(
-        lodash.pick(req.user, [
-          "_id",
-          "username",
-          "email",
-          "createdAt",
-          "updatedAt",
-        ])
-      );
+      return res.json(req.user);
     });
   })(req, res);
 });

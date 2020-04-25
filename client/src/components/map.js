@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GoogleMap, MarkerClusterer, Marker } from "@react-google-maps/api";
 import { ContextApp } from "../context/Context";
+import { useUser } from "../connects/authConnect";
 
 // Style map
 import { darkMap, darkMap2 } from "../../public/darkmap";
@@ -10,6 +11,7 @@ import on from "../../public/images/on.png";
 
 export const MapView = () => {
   const { mates, user, upContext } = useContext(ContextApp);
+  const [userCenter, setUserCenter] = useState();
   const size = {
     height: "100vh",
     width: "100vw",
@@ -19,11 +21,9 @@ export const MapView = () => {
     styles: darkMap2,
   };
 
-  useEffect(() => {
-    upContext();
-  }, []);
-
   /// *** POSICIÓN ACTUAL DEL USER ***
+
+  const usuario = useUser();
 
   const currentUser = { ...user };
   const getArr = currentUser.coordinates;
@@ -31,6 +31,7 @@ export const MapView = () => {
 
   //  *** FUNCIÓN PARA CONSTRUIR DATA - QUE MUESTRA LOS MATES ***
   const copyMates = { ...mates }; // 1º Hago una copia
+
   const preData = []; // Arrays con Objetos dentro, yo solo quiero un único Array de Objetos
   const data = []; // Array de Objeto único.
   Object.values(copyMates).map((e) => preData.push(e.coordinates)); // 2º Lo paso a Array
@@ -39,6 +40,10 @@ export const MapView = () => {
     if (e[0]) data.push(e[0]);
   });
 
+  useEffect(() => {
+    upContext();
+    setUserCenter(centerUser[0]);
+  }, [userCenter]);
   //      *** REQUISITOS PARA CENTRAR EL MAPA ***
   const zoom = 15;
   const center = centerUser[0];
@@ -49,7 +54,7 @@ export const MapView = () => {
   // } else if () {
   //   return <div>Necesitas estar conectado</div>;
   // } else {
-  else
+  else {
     return (
       <GoogleMap
         id="wrapper-google-map"
@@ -77,5 +82,6 @@ export const MapView = () => {
         </>
       </GoogleMap>
     );
+  }
 };
 // };

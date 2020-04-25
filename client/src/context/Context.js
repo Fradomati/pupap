@@ -7,7 +7,6 @@ export const ContextApp = createContext();
 export const ContextAppProvider = (props) => {
   //          *** [USER CONTEXT TO LOGIN] ***
   const [user, setUser] = useState();
-  console.log("El usuario actual:", user);
 
   //                *** [USER LOGGED?] ***
   //  ***Creo que no lo uso correnctamente***
@@ -36,7 +35,7 @@ export const ContextAppProvider = (props) => {
   //                *** [DESIGN-MENU] ***
   //  Control de apertura de Menu
   const [openMenu, setOpenMenu] = useState({
-    className: "container",
+    className: "container-menu",
     classNameNav: "",
   });
 
@@ -53,9 +52,7 @@ export const ContextAppProvider = (props) => {
     try {
       const currentMates = await fnGetCoords();
       setMates(currentMates);
-      console.log("[CONTEXTO] Estos son los mates actuales", currentMates);
     } catch (error) {
-      console.log("[CONTEXTO] Error con los mates", error);
       setMates(null);
     }
   });
