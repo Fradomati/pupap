@@ -174,6 +174,7 @@ export const Content = () => {
     className="myClassname"
     display="initial"
     position="relative"
+    styles="overflow: hidden"
   />;
 
   if (!newCnt) {
@@ -203,19 +204,14 @@ export const Content = () => {
             <div className="box-directions-sub">
               <div className="head-enjoy">
                 <img
-                  src={rocket}
-                  className="icon-img"
-                  onClick={() => intFuckCntBtn()}
-                ></img>
-                <img
                   src={int}
                   className="icon-img"
                   onClick={() => intBtn()}
                 ></img>
                 <img
-                  src={dog}
+                  src={ma}
                   className="icon-img"
-                  onClick={() => dogsBtn()}
+                  onClick={() => mapBtn()}
                 ></img>
                 <img
                   src={mach}
@@ -223,19 +219,24 @@ export const Content = () => {
                   onClick={() => toolsBtn()}
                 ></img>
                 <img
-                  src={bla}
-                  className="icon-img"
-                  onClick={() => badDesignBtn()}
-                ></img>
-                <img
                   src={fut}
                   className="icon-img"
                   onClick={() => soccBtn()}
                 ></img>
                 <img
-                  src={ma}
+                  src={bla}
                   className="icon-img"
-                  onClick={() => mapBtn()}
+                  onClick={() => badDesignBtn()}
+                ></img>
+                <img
+                  src={dog}
+                  className="icon-img"
+                  onClick={() => dogsBtn()}
+                ></img>
+                <img
+                  src={rocket}
+                  className="icon-img"
+                  onClick={() => intFuckCntBtn()}
                 ></img>
               </div>
               <div className="directions">
